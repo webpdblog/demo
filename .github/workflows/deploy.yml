@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main ] # 또는 master 브랜치
+    branches: [ master ] # 또는 master 브랜치
 
 jobs:
   build:
