@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flutter로 2048 게임 만들기</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #0056b3;
+        }
+        pre {
+            background-color: #eee;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Consolas', 'Monaco', monospace;
+            background-color: #e9e9e9;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 5px;
+            border-left: 5px solid #ffeeba;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Flutter로 2048 게임 만들기</h1>
+        <p>안녕하세요! 이번 포스팅에서는 인기 있는 퍼즐 게임인 2048을 Flutter를 사용하여 웹 애플리케이션으로 구현하는 과정을 공유하고자 합니다. Flutter는 단일 코드베이스로 다양한 플랫폼(웹, 모바일, 데스크톱)을 지원하기 때문에, 웹 기반 게임을 만드는 데 매우 효율적인 도구입니다.</p>
+
+        <h2>구현된 주요 기능</h2>
+        <ul>
+            <li><strong>게임 보드 및 타일 로직:</strong> 4x4 그리드에서 타일이 생성되고, 이동하며, 병합되는 핵심 로직을 구현했습니다.</li>
+            <li><strong>키보드 조작:</strong> 방향키(상, 하, 좌, 우)를 사용하여 타일을 이동시킬 수 있습니다.</li>
+            <li><strong>점수 시스템:</strong> 타일이 병합될 때마다 점수가 증가하며, 현재 점수를 실시간으로 표시합니다.</li>
+            <li><strong>최고 점수 저장:</strong> <code>shared_preferences</code> 패키지를 활용하여 사용자의 최고 점수를 로컬에 저장하고 불러올 수 있습니다.</li>
+            <li><strong>게임 시간 표시:</strong> 게임이 시작된 후 경과된 시간을 분:초 형식으로 표시하여 플레이 시간을 확인할 수 있습니다.</li>
+            <li><strong>게임 오버 감지:</strong> 더 이상 타일을 이동하거나 병합할 수 없을 때 게임 오버를 감지하고 메시지를 표시합니다.</li>
+            <li><strong>새 게임 시작:</strong> 언제든지 게임을 초기화하고 다시 시작할 수 있는 기능을 제공합니다.</li>
+        </ul>
+
+        <h2>게임 실행 방법</h2>
+        <p>이 프로젝트는 Flutter 웹 애플리케이션으로, 로컬 환경에서 쉽게 실행해 볼 수 있습니다. 다음 단계를 따라해 보세요:</p>
+
+        <h3>1. 프로젝트 클론 (선택 사항)</h3>
+        <p>만약 이 프로젝트의 소스 코드를 가지고 있지 않다면, GitHub에서 클론할 수 있습니다:</p>
+        <pre><code>git clone [프로젝트_레포지토리_URL]
+cd [프로젝트_디렉토리]</code></pre>
+
+        <h3>2. 의존성 설치</h3>
+        <p>프로젝트에 필요한 Flutter 패키지들을 설치합니다:</p>
+        <pre><code>flutter pub get</code></pre>
+
+        <h3>3. 웹 빌드 및 실행</h3>
+        <p>Flutter 웹 애플리케이션을 빌드하고 로컬 서버에서 실행합니다. 웹 브라우저에서 게임을 플레이할 수 있습니다.</p>
+        <pre><code>flutter build web
+flutter run -d chrome --web-hostname localhost --web-port 8080</code></pre>
+        <p class="highlight">위 명령어를 실행한 후, 웹 브라우저에서 <code>http://localhost:8080</code>으로 접속하면 2048 게임을 플레이할 수 있습니다.</p>
+
+        <h2>GitHub Pages 배포</h2>
+        <p>이 게임은 GitHub Pages를 통해 정적 웹사이트로 쉽게 배포할 수 있도록 GitHub Actions 워크플로우가 설정되어 있습니다. 프로젝트의 <code>.github/workflows/deploy.yml</code> 파일을 통해 자동 배포 과정을 확인할 수 있습니다.</p>
+        <p>여러분의 GitHub 저장소에 이 프로젝트를 푸시하고 GitHub Pages 설정을 활성화하면, 자동으로 빌드 및 배포되어 웹에서 게임을 공유할 수 있습니다.</p>
+
+        <h2>마무리</h2>
+        <p>Flutter를 사용하여 2048 게임을 구현하는 것은 매우 흥미로운 경험이었습니다. 특히 <code>shared_preferences</code>를 이용한 데이터 저장과 키보드 이벤트 처리는 웹 게임 개발에 있어 유용한 패턴을 제공합니다. 이 포스팅이 Flutter 웹 개발에 관심 있는 분들께 도움이 되기를 바랍니다!</p>
+    </div>
+</body>
+</html>
